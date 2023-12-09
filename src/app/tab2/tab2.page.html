@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" (ngSubmit)="saveNote()">
+    <ion-item>
+      <ion-label>
+        Title
+      </ion-label>
+      <ion-input label="title" type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Description
+      </ion-label>
+      <ion-textarea label="Description" formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Date
+      </ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-toolbar>
+      <ion-button slot="start" (click)="this.getCoords()">
+        <ion-icon slot="icon-only" src="assets/icons/compass.svg"></ion-icon>
+      </ion-button>
+      @if (this.latitude && this.longitude !==undefined) {
+        <p style="padding-left: 20px;">Coords: {{this.latitude}}, {{this.longitude}}</p>
+      }
+      <ion-button slot="end" (click)="takePic()">
+        <ion-icon slot="icon-only" src="assets/icons/image.svg"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+    <ion-button type="submit" expand="full" [disabled]="!form.valid">Submit</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-card style="overflow: auto;">
+  <ion-card-header>
+    <ion-card-title>{{ this.title }}</ion-card-title>
+    <ion-card-subtitle>{{ this.description }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid class="">
+      @if (this.position.latitude>-10000 || this.position.longitude>-10000) {
+      <ion-title>Location</ion-title>
+      <ion-row class="">
+        <ion-col class="">
+          <ion-item style="width: 100%;">
+            <div style="height: 250px; width: 100%" id="map"></div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      } @if (this.image !== '' && this.image !== undefined) {
+      <ion-title>Picture</ion-title>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-img [src]="this.image"></ion-img>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      }
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

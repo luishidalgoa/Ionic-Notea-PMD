@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    @for(note of noteS.notes$ | async;track note.key){
+      <app-note [value]="note"></app-note>
+  }
+  </ion-list>
+</ion-content>
