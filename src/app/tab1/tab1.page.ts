@@ -4,6 +4,7 @@ import { NoteService } from '../services/note.service';
 import { Note } from '../model/note';
 import { CommonModule } from '@angular/common';
 import { NoteComponent } from '../components/note/note.component';
+import { Observable, from, map, mergeMap, tap, toArray } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -26,5 +27,12 @@ export class Tab1Page {
       });
     })*/
   }
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  }
+
 
 }
