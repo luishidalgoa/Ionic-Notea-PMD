@@ -1,0 +1,14 @@
+Pagina desplegada:
+
+https://notea2024-bace4.web.app/tabs/tab1
+
+
+GITHUB:
+
+https://github.com/luishidalgoa/Ionic-Notea-PMD
+
+
+
+APK:
+
+https://github.com/luishidalgoa/Ionic-Notea-PMD/blob/main/APK-IONIC.apk
