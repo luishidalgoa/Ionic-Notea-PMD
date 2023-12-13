@@ -68,16 +68,13 @@ export class NoteService {
 
 
   /**
-   *  Retrieves the next set of elements
-   * @param firstElement optional, if value is set, the query will start after this element
-   * @param numberOfElements optional, if value is set, the query will return this number of elements
-   * @returns an observable with the next set of elements
+   * solicitara a firebase los elementos a partir del elemento indicado y una cantidad de elementos 
+   * especificada. Si no se especifica la cantidad de elementos, se devolveran 15 elementos
+   * @param firstElement firebase devolvera una lista de elementos a partir de este elemento (ordenados por fecha ascendente)
+   * @param numberOfElements numero de elementos que se solicitaran a firebase
+   * @returns devuelve una promesa con el resultado de la consulta
    */
   readNext(firstElement: any=null,numberOfElements:number=15): Promise<any> {
-    if(firstElement)
       return this.myCollection.ref.orderBy('date','asc').startAfter(firstElement).limit(numberOfElements).get();
-    else
-      return this.myCollection.ref.orderBy('date','asc').startAfter(firstElement).limit(numberOfElements).get();
-
   }
 }

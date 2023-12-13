@@ -32,9 +32,9 @@ export class Tab1Page {
 
 
   private lastNote:Note|undefined=undefined; // referencia a la ultima nota cargada
-  public isInfiniteScrollAvailable:boolean = true; // indica si se puede seguir cargando notas
-  private notesPerPage:number = 5; // numero de notas a cargar por pagina
-  public _notes$:BehaviorSubject<Note[]> = new BehaviorSubject<Note[]>([]);
+  public isInfiniteScrollAvailable:boolean = true; // indica si se puede seguir cargando notas. Es usado por el infinite scroll del html
+  private notesPerPage:number = 5; // numero de notas a cargar por pagina. Su valor se modifica en el metodo ionViewDidEnter en funcion del tamaño de la pantalla
+  public _notes$:BehaviorSubject<Note[]> = new BehaviorSubject<Note[]>([]); // array de notas de la vista. Es usado por el infinite scroll del html
 
 
 
@@ -58,6 +58,7 @@ export class Tab1Page {
    * @returns 
    */
   loadNotes(fromFirst:boolean, event?:any){
+    // Si es la primera carga, no renderizamos el infinite scroll
     if(fromFirst==false && this.lastNote==undefined){
       this.isInfiniteScrollAvailable=false;
       event.target.complete(); // detiene el infinite scroll
@@ -67,9 +68,11 @@ export class Tab1Page {
     this.convertPromiseToObservableFromFirebase(this.noteS.readNext(this.lastNote,this.notesPerPage)).subscribe(d=>{
       event?.target.complete();
       if(fromFirst){
+        // si es la primera carga, reemplazamos el array de notas
         this._notes$.next(d);
       }else{
-        this._notes$.next([...this._notes$.getValue(),...d]); // añadimos las notas al array de notas
+        // si no es la primera carga, añadimos las notas al array de notas
+        this._notes$.next([...this._notes$.getValue(),...d]);
       }
     })
     
