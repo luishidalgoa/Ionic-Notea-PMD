@@ -34,6 +34,7 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/pwa-elements": "^3.2.2",
     "firebase": "^10.7.1",
+    "geojson-vt": "^3.2.1",
     "ionicons": "^7.2.1",
     "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",

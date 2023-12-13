@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { Map, marker, tileLayer, } from 'leaflet';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-note',
@@ -24,14 +24,18 @@ export class ModalNoteComponent  implements OnInit {
   ngOnInit() {
   }
   ngAfterViewInit() {
-    const map = new Map('map').setView([this.position.latitude, this.position.longitude], 13);
-    tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const map = L.map('map').setView([this.position.latitude, this.position.longitude], 13);
+    setTimeout(() => {
+      map.invalidateSize(true);
+    },10)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    marker([this.position.latitude,this.position.longitude]).addTo(map)
+    L.marker([this.position.latitude,this.position.longitude]).addTo(map)
     .openPopup();
+
   }
 
 }
