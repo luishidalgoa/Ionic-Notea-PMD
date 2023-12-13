@@ -54,4 +54,30 @@ export class NoteService {
       }
     });
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   *  Retrieves the next set of elements
+   * @param firstElement optional, if value is set, the query will start after this element
+   * @param numberOfElements optional, if value is set, the query will return this number of elements
+   * @returns an observable with the next set of elements
+   */
+  readNext(firstElement: any=null,numberOfElements:number=15): Promise<any> {
+    if(firstElement)
+      return this.myCollection.ref.orderBy('date','asc').startAfter(firstElement).limit(numberOfElements).get();
+    else
+      return this.myCollection.ref.orderBy('date','asc').startAfter(firstElement).limit(numberOfElements).get();
+
+  }
 }
