@@ -27,7 +27,7 @@ export class ModalNoteComponent  implements OnInit {
     const map = L.map('map').setView([this.position.latitude, this.position.longitude], 13);
     setTimeout(() => {
       map.invalidateSize(true);
-    },10)
+    },100)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
